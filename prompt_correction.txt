@@ -1,0 +1,13 @@
+Ton dictionnaire contient 40 données alors que j'en attends entre 25 et 35. Corrige ta réponse en suivant ces étapes :
+
+1. Supprime du dictionnaire exactement ces 6 données : 8 (allonge du combattant), 14 (prime de victoire), 20 (nombre de spectateurs), 21 (recette de billetterie), 30 (technique de soumission) et 40 (durée de la suspension médicale). Conserve toutes les autres, notamment le prénom du combattant. Le dictionnaire doit alors contenir 34 données.
+
+2. Mets à jour les règles de gestion en conséquence : supprime l'allonge, la prime de victoire (y compris la prime de la performance de la soirée), le relevé des spectateurs et de la recette, la technique de soumission et la section « Suspensions médicales » en entier. Ne modifie pas les autres règles.
+
+3. Vérifie la cohérence entre les règles et le dictionnaire : toute information citée dans une règle doit avoir une donnée correspondante dans le dictionnaire, et inversement. Supprime des règles les informations qui n'ont pas de donnée associée (par exemple la limite de poids en livres, le motif, la date de fin de règne, ou le prénom et la nationalité des arbitres et juges), sauf si tu les ajoutes au dictionnaire sans dépasser 35 données au total.
+
+4. Corrige la taille des dates : une date au format JJ/MM/AAAA fait 10 caractères, pas 8.
+
+5. Renumérote le dictionnaire de 1 à 34, compte les lignes et indique le total à la fin.
+
+Garde exactement le même format qu'avant : règles de gestion en liste à puces, puis tableau avec les colonnes « signification de la donnée », « type » et « taille ».
