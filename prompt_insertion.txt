@@ -1,0 +1,63 @@
+=====================================================================
+PROMPT UTILISÉ POUR GÉNÉRER LES DONNÉES (3_insertion.sql)
+=====================================================================
+
+[Rôle]
+Tu es un expert en bases de données MySQL et un spécialiste des arts martiaux
+mixtes (MMA). Tu génères des jeux de données de test réalistes et cohérents.
+
+[Contexte]
+Je développe la base de données « ligue_mma » d'une ligue professionnelle de MMA
+fictive fondée en 2020. Elle gère les combattants, leurs contrats, les
+catégories de poids, les événements, les lieux, les combats, le personnel
+(arbitres, juges, médecins...), les notes des juges, les classements et les
+règnes de champion. Voici le script de création des tables (MPD) et les
+contraintes de validation :
+
+<coller ici le contenu de 1_creation.sql>
+<coller ici le contenu de 2_contraintes.sql>
+
+[Tâche]
+Génère un script SQL d'insertion (INSERT INTO ... VALUES ...) qui remplit
+toutes les tables avec un nombre conséquent de données :
+- 12 catégories (8 masculines, 4 féminines, limites de poids officielles en kg)
+- 15 lieux répartis dans au moins 8 pays (dont plusieurs en France)
+- 4 types de combat (préliminaire, carte principale, main event, titre)
+- 30 membres du personnel (arbitres, juges, médecins, inspecteurs, cutmen)
+- 100 combattants fictifs (8 à 9 par catégorie), de nationalités variées
+- 1 à 2 contrats par combattant
+- 24 événements de 2023 à décembre 2026 (les 2 derniers sont à venir, donc
+  leurs combats n'ont pas encore de résultat)
+- 10 combats par événement (le n°10 est le main event)
+- 4 mises à jour du classement par an, avec le top 10 + champion par catégorie
+- l'historique des règnes de champion
+
+[Contraintes de cohérence à respecter]
+1. Respecter l'ordre d'insertion imposé par les clés étrangères (tables
+   parents d'abord).
+2. Respecter TOUTES les contraintes CHECK / UNIQUE du script de contraintes
+   (formats LIC-____, méthodes de victoire autorisées, scores entre 21 et 50,
+   décision => temps = 05:00, etc.).
+3. Les deux combattants d'un combat (table OPPOSE, exactement 2 lignes par
+   combat) appartiennent à la catégorie du combat et sont différents.
+4. Le vainqueur d'un combat (id_vainqueur) est l'un des deux adversaires ;
+   il est NULL pour un nul, un no contest ou un combat à venir.
+5. L'arbitre d'un combat a la fonction 'Arbitre' ; les notes (table NOTE)
+   sont données par 3 personnes de fonction 'Juge', uniquement pour les
+   combats terminés par décision, et le vainqueur a le meilleur total chez
+   la majorité des juges (système des 10 points).
+6. Le personnel ayant officié un combat est affecté à l'événement
+   (table EST_AFFECTE).
+7. Le « combat de la soirée » (id_evenement_soiree) appartient au même
+   événement ; la « performance de la soirée » est attribuée à un vainqueur
+   par KO/TKO ou soumission de cet événement.
+8. Un règne commence à la date d'un combat pour le titre remporté par un
+   nouveau champion ; le champion apparaît en position 0 du classement.
+9. Les données doivent être réalistes mais fictives (pas de vraies
+   personnes).
+
+[Format de sortie]
+- Un seul script SQL, commençant par USE ligue_mma;
+- Un commentaire avant chaque bloc d'insertion indiquant la table.
+- Des INSERT multi-lignes (un INSERT par table ou par paquet de lignes).
+- Aucune explication en dehors du script.

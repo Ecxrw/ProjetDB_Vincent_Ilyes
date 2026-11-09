@@ -1,0 +1,1 @@
+create schema ligue_mma;
